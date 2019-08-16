@@ -34,7 +34,7 @@
 ![avatar](/res/TIM截图20190816154417.jpg)
 ### 为什么会出现两个HEAD
 因为我们在rebase后，会出现一个新的commit，这个commit的parent就是分支刚建立时的最后一次提交，所以在此时，该分支会同时存在两个HEAD导致冲突，如下图：
-```mermaid
+```
 graph LR
 A[拉分支时的最后一次commit] -- rebase --> B(HEAD?)
 A --> C(( ))
@@ -45,7 +45,7 @@ F --> G(HEAD?)
 ```
 
 所以git会自动将这两个connit进行合并，而合并后的parent就是这两个的commit的哈希值。
-```mermaid
+```
 graph LR
 A[ ] -- rebase --> B( )
 A --> C(( ))
