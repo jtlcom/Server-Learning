@@ -20,40 +20,24 @@
 
 ## 操作方式
 
-如图所示，我希望把我的这四次commit合并
-在进行变基之前，我们先pull一下分支，以防本地分支与远端分支产生冲突。
-然后进行变基的操作，输入完命令后，git会自动打开vim。
-我们把第一次的pick改为r，后面的全部改为s，然后保存退出。
-接着在vim里面把上面的内容改为变基后，需要commit的描述，保存退出。
-然后还会再弹出一次vim，直接保存退出即可。
-完成后，git会显示Successfully Rebased......
-然后我们再从远端分支pull一次，这次会因为我们本地出现的两个HEAD而冲突，git会自动将这两个HEAD合并。
-### 为什么会出现两个HEAD
+1. 如图所示，我希望把我的这四次commit合并        
+2. 在进行变基之前，我们先pull一下分支，以防本地分支与远端分支产生冲突。      
+3. 然后进行变基的操作，输入完命令后，git会自动打开vim。      
+4. 我们把第一次的pick改为r，后面的全部改为s，然后保存退出。      
+5. 接着在vim里面把上面的内容改为变基后，需要commit的描述，保存退出。     
+6. 然后还会再弹出一次vim，直接保存退出即可。     
+7. 完成后，git会显示Successfully Rebased......       
+8. 然后我们再从远端分支pull一次，这次弹出vim会因为我们本地出现的两个HEAD而冲突，git会自动将这两个HEAD合并。     
+9. 然后我们进行push      
+
+### 为何会出现冲突？
 因为我们在rebase后，会出现一个新的commit，这个commit的parent就是分支刚建立时的最后一次提交，所以在此时，该分支会同时存在两个HEAD导致冲突，如下图：
 ![avatar](/res/TIM截图20190819143211.jpg)
-```mermaid
-graph LR
-A[拉分支时的最后一次commit] -- rebase --> B(HEAD?)
-A --> C(( ))
-C --> E(( ))
-E --> F(( ))
-F --> G(HEAD?)
-```
 
 所以git会自动将这两个connit进行合并，而合并后的parent就是这两个的commit的哈希值。
 ![avatar](/res/TIM截图20190819145731.jpg)
-```mermaid
-graph LR
-A[ ] -- rebase --> B( )
-A --> C(( ))
-C --> E(( ))
-E --> F(( ))
-F --> G( )
-B -- parent --> D[git自动生成的merge]
-G -- parent --> D
-```
 
-然后我们进行push
+
 
 ## 图示
 ![avatar](/res/TIM截图20190816153538.jpg)
