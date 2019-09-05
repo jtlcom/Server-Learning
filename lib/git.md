@@ -15,40 +15,56 @@
 
 ## git命令
 
-    git pull
-	git rebase -i HEAD~合并提交数量
-	git pull
-	git push
+```git
+git pull
+git rebase -i HEAD~合并提交数量
+git pull
+git push
+```
 
 ## 操作方式
 
-1. 如图所示，我希望把我的这四次commit合并        
-2. 在进行变基之前，我们先pull一下分支，以防本地分支与远端分支产生冲突。      
-3. 然后进行变基的操作，输入完命令后，git会自动打开vim。      
-4. 我们把第一次的pick改为r，后面的全部改为s，然后保存退出。      
-5. 接着在vim里面把上面的内容改为变基后，需要commit的描述，保存退出。     
-6. 然后还会再弹出一次vim，直接保存退出即可。     
-7. 完成后，git会显示Successfully Rebased......       
-8. 然后我们再从远端分支pull一次，这次弹出vim会因为我们本地出现的两个HEAD而冲突，git会自动将这两个HEAD合并。     
-9. 然后我们进行push      
+1. 如图所示，我希望把我的这四次commit合并
+2. 在进行变基之前，我们先pull一下分支，以防本地分支与远端分支产生冲突
+3. 然后进行变基的操作，输入完命令后，git会自动打开vim
+4. 我们把第一次的pick改为r，后面的全部改为s，然后保存退出
+5. 接着在vim里面把上面的内容改为变基后，需要commit的描述，保存退出
+6. 然后还会再弹出一次vim，直接保存退出即可
+7. 完成后，git会显示Successfully Rebased......
+8. 然后我们再从远端分支pull一次，这次弹出vim会因为我们本地出现的两个HEAD而冲突，git会自动将这两个HEAD合并
+9. 然后我们进行push
 
-### 为何会出现冲突？
+### ?为何会出现冲突
+
 因为我们在rebase后，会出现一个新的commit，这个commit的parent就是分支刚建立时的最后一次提交，所以在此时，该分支会同时存在两个HEAD导致冲突，如下图：
 ![avatar](/res/TIM截图20190819143211.jpg)
 
 所以git会自动将这两个connit进行合并，而合并后的parent就是这两个的commit的哈希值。
 ![avatar](/res/TIM截图20190819145731.jpg)
 
-
-
 ## 图示
+
 ![avatar](/res/TIM截图20190816153538.jpg)
+
+---
 ![avatar](/res/TIM截图20190816153733.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154045.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154147.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154225.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154248.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154417.jpg)
+
+---
 ![avatar](/res/TIM截图20190816154449.jpg)
 
 ---
