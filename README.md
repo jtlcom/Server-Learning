@@ -24,5 +24,6 @@
 
 * [从csv到CouchDB的过程](/lib/js.md)
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
+* [通过离散文本或JSON文件名找到对应JS在CouchDB的位置](/lib/couch_find.md)
 
 ---
