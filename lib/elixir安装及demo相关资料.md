@@ -1,6 +1,12 @@
 # elixir安装及demo相关资料
 
-[TOC]
+## 目录
+
+* [一、elixir安装](#一、elixir安装)
+* [二、demo流程分析](#二、demo流程分析)
+  * [demo代码调试方法](#demo代码调试方法)
+* [三、elixir的细节](#三、elixir的细节)
+* [四、Demo框架图](#四、Demo框架图)
 
 ## 一、elixir安装
 

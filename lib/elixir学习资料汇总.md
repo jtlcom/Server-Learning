@@ -1,7 +1,5 @@
 # elixir学习资料汇总
 
-[TOC]
-
 * 官网文档：<https://hexdocs.pm/elixir/Kernel.html>
 * (译文)如何开始学习Elixir: <https://segmentfault.com/a/1190000006792281>
 * Elixir School: <https://elixirschool.com/zh-hans/>
