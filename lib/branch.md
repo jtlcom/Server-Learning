@@ -2,7 +2,7 @@
 
 ## 目录
 
-* [CouchDB](#CouchDB)
+* [CouchDB](#couchdb)
 * [server](#server)
 * [mapping](#mapping)
 

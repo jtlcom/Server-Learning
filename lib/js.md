@@ -3,8 +3,8 @@
 ## 目录
 
 * [流程](#流程)
-* [JSON](#JSON)
-* [CouchDB](#CouchDB)
+* [JSON](#json)
+* [CouchDB](#couchdb)
   * [问题处理流程](#问题处理流程)
 * [服务器](#服务器)
 

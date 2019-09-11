@@ -2,9 +2,9 @@
 
 ## 目录
 
-* [JSON](#JSON)
-* [JavaScript](#JavaScript)
-* [Elixir](#Elixir)
+* [JSON](#json)
+* [JavaScript](#javascript)
+* [Elixir](#elixir)
 
 ## JSON
 

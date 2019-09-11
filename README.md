@@ -1,10 +1,10 @@
 # 服务器资料
 
-## 掌沃无限编码规范
+## 编码规范
 
-* [JSON](/lib/code_guide.md#JSON)
-* [JavaScript](/lib/code_guide.md#JavaScript)
-* [Elixir](/lib/code_guide.md#Elixir)
+* [JSON](/lib/code_guide.md#json)
+* [JavaScript](/lib/code_guide.md#javascript)
+* [Elixir](/lib/code_guide.md#elixir)
 
 ## 实习资料
 
@@ -32,8 +32,8 @@
 
 ## 问题汇总
 
-* [玩家完成神劫活动后，幻兽丢失](/lib/issue.md#玩家完成神劫活动后，幻兽丢失)
-* [玩家参与9月8日的幻灵小队活动后，出现掉线](/lib/issue.md#玩家参与9月8日的幻灵小队活动后，出现掉线)
-* [部分玩家无法登陆](/lib/issue.md#部分玩家无法登陆)
+* [玩家完成神劫活动后，幻兽丢失](/lib/issue1.md)
+* [玩家参与9月8日的幻灵小队活动后，出现掉线](/lib/issue2.md)
+* [部分玩家无法登陆](/lib/issue3.md)
 
 ---

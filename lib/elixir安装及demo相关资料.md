@@ -2,13 +2,13 @@
 
 ## 目录
 
-* [一、elixir安装](#一、elixir安装)
-* [二、demo流程分析](#二、demo流程分析)
+* [一_Elixir安装](#一_elixir安装)
+* [二_demo流程分析](#二_demo流程分析)
   * [demo代码调试方法](#demo代码调试方法)
-* [三、elixir的细节](#三、elixir的细节)
-* [四、Demo框架图](#四、Demo框架图)
+* [三_Elixir的细节](#三_elixir的细节)
+* [四_Demo框架图](#四_demo框架图)
 
-## 一、elixir安装
+## 一_Elixir安装
 
 ### 根据官网提供的Windows安装方法会有如下问题
 
@@ -39,7 +39,7 @@
 
 如果出现以上情况，请把erl的bin目录也添加到Path
 
-## 二、demo流程分析
+## 二_demo流程分析
 
 ![avatar](/res/TIM截图20190822114849.jpg)
 
@@ -76,7 +76,7 @@ GenServer.cast(avatar_pid, {{:bag,:sell},[0,3]})
 如：Repo、Item等中的函数，可以直接通过 模块名.函数名(参数) 的方式进行调用
 若想清除角色和物品数据，可以删除项目根目录下的characters、items文件，重新运行iex -S mix即可
 
-## 三、elixir的细节
+## 三_Elixir的细节
 
 1. 使用mix deps.get 下载依赖时，可能会因为超时下载不成功，可根据提示配置两个环境变量，如下：
 HEX_HTTP_CONCURRENCY     值为1
@@ -94,7 +94,7 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 注意页面位置，尽量用1处点击复制url，在通过git clone 进行下载，不推荐通过2处直接下载
 
-## 四、Demo框架图
+## 四_Demo框架图
 
 ![avatar](/res/TIM截图20190822115641.jpg)
 
