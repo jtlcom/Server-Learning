@@ -30,6 +30,10 @@
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
 * [通过离散文本找到对应JS在CouchDB的位置](/lib/couch_find.md)
 
+## 场景
+
+* [副本实例进入流程](/lib/副本实例进入流程.md)
+
 ## 问题汇总
 
 * [玩家完成神劫活动后，幻兽丢失](/lib/issue1.md)
