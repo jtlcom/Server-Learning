@@ -1,8 +1,10 @@
 # elixir学习资料汇总
 
-* 官网文档：<https://hexdocs.pm/elixir/Kernel.html>
-* (译文)如何开始学习Elixir: <https://segmentfault.com/a/1190000006792281>
+* Elixir官方文档：<https://hexdocs.pm/elixir/Kernel.html>
+* Erlang官方文档: <http://erlang.org/doc/search/>
 * Elixir School: <https://elixirschool.com/zh-hans/>
+
+* (译文)如何开始学习Elixir: <https://segmentfault.com/a/1190000006792281>
 * 一天熟悉Elixir，练习Koans: <https://segmentfault.com/a/1190000008072624>
 * Elixir Examples: <https://elixir-examples.github.io/>
 * programming elixir: <https://github.com/straightdave/programming_elixir>
