@@ -10,5 +10,5 @@
 * programming elixir: <https://github.com/straightdave/programming_elixir>
 * 30天学会elixir: <https://github.com/seven1m/30-days-of-elixir>
 * Elixir学习资料汇总: <https://ruby-china.org/topics/31694>
-
+* Elixir中文文档：<https://erldoc.com>
 ---
