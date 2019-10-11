@@ -96,6 +96,6 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 ## 四_Demo框架图
 
-![avatar](/res/demo框架.png)
+![avatar](/res/demo框架-改.png)
 
 ---

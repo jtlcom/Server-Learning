@@ -14,6 +14,7 @@
 * [服务器实习生3周考核标准](/lib/服务器实习生3周考核标准.md)
 * [elixir安装及demo相关资料](/lib/elixir安装及demo相关资料.md)
 * [服务器前期准备](/lib/服务器前期准备.md)
+* [elixir基础知识](/lib/elixir基础知识.md)
 
 ## git
 
