@@ -30,6 +30,8 @@
 
 ## JavaScript
 
+### 写法一
+
 ```javascript
 function (doc) {  //两格缩进
   var [type, id] = doc._id.split(':')
@@ -55,6 +57,39 @@ function (doc) {  //两格缩进
   }
 }
 ```
+
+### 写法二
+
+```javascript
+function (doc) {
+  var [type, id] = doc._id.split(":");
+  if (type === "rune_compound") {
+    var config = doc.value;
+    var value = {};
+
+    Object.keys(config).map(function(key) {
+      if (config[key] != undefined) {
+        switch(key) {
+          case "sweepCost":
+            value[key] = config[key].split(';').map(function(sc) {
+              return parseInt(sc);
+            })
+            break;
+          default:
+              value[key] = config[key];
+            break;
+        }
+      }
+    });
+
+    value["id"] = parseInt(id)
+    emit(parseInt(id), value);
+  }
+}
+```
+
+* 第一种写法更直观的表现了转表的内容，且较为简单
+* 而第二种写法可以更简便的转表，并且兼容后面新增的其他字段
 
 ## Elixir
 
