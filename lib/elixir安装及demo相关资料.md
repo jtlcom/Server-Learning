@@ -7,6 +7,7 @@
   * [demo代码调试方法](#demo代码调试方法)
 * [三_Elixir的细节](#三_elixir的细节)
 * [四_Demo框架图](#四_demo框架图)
+* [五_消息序列图](#五_消息序列图)
 
 ## 一_Elixir安装
 
@@ -98,7 +99,8 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 ![avatar](/res/demo框架-改.png)
 
-
 ## 五_消息序列图
+
 ![avatar](/res/序列图.png)
+
 ---

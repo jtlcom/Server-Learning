@@ -9,12 +9,12 @@
 ## 实习资料
 
 * [实习资料简介](/lib/实习资料.md)
+* [elixir基础知识](/lib/elixir基础知识.md)
 * [elixir学习资料汇总](/lib/elixir学习资料汇总.md)
 * [前期问题处理方法](/lib/前期问题.md)
 * [服务器实习生3周考核标准](/lib/服务器实习生3周考核标准.md)
 * [elixir安装及demo相关资料](/lib/elixir安装及demo相关资料.md)
 * [服务器前期准备](/lib/服务器前期准备.md)
-* [elixir基础知识](/lib/elixir基础知识.md)
 
 ## git
 
