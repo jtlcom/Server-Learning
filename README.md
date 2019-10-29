@@ -4,17 +4,16 @@
 
 * [JSON](/lib/code_guide.md#json)
 * [JavaScript](/lib/code_guide.md#javascript)
+* [JavaScript常用转表方法](/lib/code_guide.md#javascript常用转表方法)
 * [Elixir](/lib/code_guide.md#elixir)
 
 ## 实习资料
 
 * [实习资料简介](/lib/实习资料.md)
-* [elixir基础知识](/lib/elixir基础知识.md)
-* [elixir学习资料汇总](/lib/elixir学习资料汇总.md)
-* [前期问题处理方法](/lib/前期问题.md)
 * [服务器实习生3周考核标准](/lib/服务器实习生3周考核标准.md)
-* [elixir安装及demo相关资料](/lib/elixir安装及demo相关资料.md)
-* [服务器前期准备](/lib/服务器前期准备.md)
+* [实习考核期第一阶段内容](/lib/实习期第一阶段内容.md)
+* [实习考核期第二阶段内容](/lib/实习期第二阶段内容.md)
+* [实习考核期第三阶段内容](/lib/实习期第三阶段内容.md)
 
 ## git
 
@@ -33,10 +32,6 @@
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
 * [通过离散文本找到对应JS在CouchDB的位置](/lib/couch_find.md)
 
-## 场景
-
-* [副本实例进入流程](/lib/副本实例进入流程.md)
-
 ## 问题汇总
 
 * [玩家完成神劫活动后，幻兽丢失](/lib/issue1.md)
@@ -48,5 +43,6 @@
 
 * [对接期间修改相关总结](/lib/对接期间修改相关总结-longkui.md)
 * [任务系统总结](/lib/task_system.md)
+* [副本实例进入流程](/lib/副本实例进入流程.md)
 
 ---
