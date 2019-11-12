@@ -99,8 +99,39 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 ![avatar](/res/demo框架-改.png)
 
+### 消息示例及作用
+`{:reply, response}` 将此消息直接发给客户端，服务器不做其余处理
+
+`{:notify, events}` 将此消息直接发给客户端，服务器不做其余处理
+
+`{:notify, events, changed}` 调用`apply_rules({events, changed}, {id, data})`函数处理events和changed，并返回新的events和changed。将events返回给客户端，changed merge到玩家里。返回新的OTP状态
+
+`{:resolve, context, effects}` 与上条消息类似，多一步在effect中的处理。
+
+`response/events => [{{:xxx, :xx}, id, %{msg}}, {}, ...]` :xx：标识；msg：想发送给客户端的信息
+
+`changed => %{bag: new_bag}` 
+
+`context => %{action: {}, events: events, changed: changed}`
+
+---
+
+### 各函数功能（以背包卖东西为例）
+`handle_cast({{module, action}, args}, {id, _, data} = state)` OTP函数；接收从session/cmder发出的消息，并调用 dispatch |> handle_result
+
+`dispatch(module, action, args)` 对传入的参数进行处理；使用apply调用相应模块的函数，返回值为该模块函数的返回值
+
+`buy(index, count, currencyType\\:bindGold, {_id, %{bag: bag, currencies: currencies}} = all)` 主要的逻辑处理函数，获取背包中index对应的物品信息；获取玩家持有的金钱；判断是否能够购买以及获得物品单价。组成effect消息；使用:resolve返回
+
+`handle_result({:resolve, context, effects}, {id, session, data})` 消息处理函数。调用effect里面的函数。将events返回给客户端，将changed `merge`到玩家数据里。返回新的OTP状态（也就是handle_cast的返回值）
+
+`Effect.esolve({:gain, :item, item}, {id, _context, %{bag: bag}})` effect消息处理函数。更具effect为背包增加某样物品，返回event、changed消息。
+
 ## 五_消息序列图
 
 ![avatar](/res/序列图.png)
+
+
+
 
 ---
