@@ -145,6 +145,10 @@ if (timeProp) {
 
 ## Elixir
 
+### 编码
+
+关于更多的Elixir程序风格，可参考Elixir社区在[GitHub的Elixir风格指南](https://github.com/geekerzp/elixir_style_guide/blob/master/README-zhCN.md)。
+
 1. 每一个新的项目都需要[从对应的分支中拉出开发分支](/lib/branch.md)进行编码，否则会导致代码无法push。
 2. 编码时，应遵循“简单设计原则”的理念，并尽可能地做到“高内聚，低耦合”。
 3. 玩家数据中，新添加的原子，务必加在所在模块的init_atoms里。
@@ -165,8 +169,45 @@ if (timeProp) {
 
 ```elixir
 def init_atoms() do
-  {:prop}
+    {:rune_bag, :rune_equip, :rune_qeuip_type, :list, :fysp, :fyjh}
+  end
+
+def init_player_info() do
+  %{
+    # 符印碎片&&符印精华
+    currencies: %{fysp: 0, fyjh: 0},
+    # 符印背包
+    rune_bag: %{},
+    # 已镶嵌的符印
+    rune_equip: %{},
+    # 已镶嵌符印的类型记录
+    rune_equip_type: %{list: []},
+    # 符印塔的通关层数
+    fy_tower: %{layer: 250},
+  }
 end
 ```
+
+---
+
+### 代码自测
+
+1. 涉及魔石功能，检查是否已调用付费(Pay)接口，确认是否已接入米大师系统；
+2. 涉及发放奖励，检查是否已有检查消耗不足和消耗逻辑，消耗逻辑要放在发放奖励逻辑之前，检查逻辑是否可能出现奖励无限发放/领取的风险；（包括次数消耗）
+3. 检查本次修改是否只涉及本次功能属性，若涉及其他功能属性需检查逻辑是否合理；
+4. 消耗和获得物品resolve都应该携带action，并将对应的action添加到tlog source_of_action函数内；
+5. 检查功能逻辑是否需要接入idip；
+6. Router.call(name, request, default \\\\ nil)若涉及同步修改的，timeout处理默认为对侧已收到请求；
+7. 操作ets或公共存储对象时，要思考下多线程操作问题；
+8. 功能完成后须按照策划文档中的checklist逐一自测，尽量避免有卡点，异常(边界)情况需自己测试；
+9. 给玩家发奖需考虑玩家离线情况，若存在跨进程发奖，可以考虑使用AsyncEvts.add_reward_evt(loa分支可用)
+
+---
+
+### git提交描述规则
+
+功能名 #redmine编号 提交描述内容
+
+例如：幻兽天赋 #10148 修复未解锁的天赋不能通过幻化领悟bug
 
 ---

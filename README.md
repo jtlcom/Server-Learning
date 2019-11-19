@@ -1,5 +1,7 @@
 # 服务器资料
 
+<img src="res/zwwx-banner.png" align="right" >
+
 ## 编码规范
 
 * [JSON](/lib/code_guide.md#json)
@@ -19,11 +21,9 @@
 
 * [合并多次提交](/lib/git.md)
 * [拉分支](/lib/branch.md)
-* [git提交描述规则](/lib/服务器规则.md#git提交描述规则)
 
 ## 测试
 
-* [code自查及提交规则](/lib/服务器规则.md)
 * [周期运营活动代码自测](/lib/服务器测试开启周期运营活动.md)
 
 ## JavaScript,CouchDB
@@ -42,6 +42,7 @@
 
 ## 总结
 
+* [项目开发流程--致新同学](/lib/项目开发流程.md)
 * [对接期间修改相关总结](/lib/对接期间修改相关总结-longkui.md)
 * [任务系统总结](/lib/task_system.md)
 * [副本实例进入流程](/lib/副本实例进入流程.md)
