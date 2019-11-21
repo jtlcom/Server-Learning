@@ -1,0 +1,12 @@
+{
+  "editor.someSetting": true,
+  "markdownlint.config": {
+      "default": true,
+      "MD003": { "style": "atx_closed" },
+      "MD007": { "indent": 4 },
+      "MD033": {
+        "allowed_elements" : [ "a", "h1", "h2", "img", "p", "br" ]
+      },
+      "no-hard-tabs": false
+  }
+}
