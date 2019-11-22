@@ -2,7 +2,7 @@
 
 ---
 
-<img src="res/zwwx-banner.png" align="right" >
+<img src="res/zwwx-banner.png" align="right">
 
 ## 编码规范
 
@@ -30,7 +30,7 @@
 
 ## JavaScript,CouchDB
 
-* [从csv到CouchDB的过程](/lib/js.md)
+* [配置表转换为可读代码的流程](/lib/js.md)
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
 * [通过离散文本找到对应JS在CouchDB的位置](/lib/couch_find.md)
 

@@ -6,11 +6,11 @@
 
 ## 目录
 
-* [1. Elixir安装](#1Elixir安装)
+* [1. Elixir安装](#1elixir安装)
 * [2. demo流程分析](#2demo流程分析)
   * [2.1 demo代码调试方法](#21demo代码调试方法)
-* [3. Elixir的细节](#3Elixir的细节)
-* [4. Demo框架图](#4Demo框架图)
+* [3. Elixir的细节](#3elixir的细节)
+* [4. Demo框架图](#4demo框架图)
 * [5. 消息序列图](#5消息序列图)
 
 ## [1.Elixir安装](#目录)
@@ -104,6 +104,7 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 ![avatar](/res/demo框架-改.png)
 
 ### 消息示例及作用
+
 `{:reply, response}` 将此消息直接发给客户端，服务器不做其余处理
 
 `{:notify, events}` 将此消息直接发给客户端，服务器不做其余处理
@@ -114,13 +115,14 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 `response/events => [{{:xxx, :xx}, id, %{msg}}, {}, ...]` :xx：标识；msg：想发送给客户端的信息
 
-`changed => %{bag: new_bag}` 
+`changed => %{bag: new_bag}`
 
 `context => %{action: {}, events: events, changed: changed}`
 
 ---
 
 ### 各函数功能（以背包卖东西为例）
+
 `handle_cast({{module, action}, args}, {id, _, data} = state)` OTP函数；接收从session/cmder发出的消息，并调用 dispatch |> handle_result
 
 `dispatch(module, action, args)` 对传入的参数进行处理；使用apply调用相应模块的函数，返回值为该模块函数的返回值
@@ -134,8 +136,5 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 ## [5.消息序列图](#目录)
 
 ![avatar](/res/序列图.png)
-
-
-
 
 ---

@@ -39,7 +39,7 @@
   last_update_time: 0,
   # 世界等级
   world_level: 0,
-  # 服务器可兑换次数
+  # 全服可兑换次数
   limit: %{}
 } = server_data <- ETS.load(act_id)
 
