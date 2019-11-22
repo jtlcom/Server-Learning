@@ -9,6 +9,7 @@
 * [数据结构](#数据结构)
 * [数据存取](#数据存取)
 * [活动状态](#活动状态)
+* [活动中控](#活动中控)
 * [数据初始化](#数据初始化)
 * [数据重置](#数据重置)
 * [消息协议](#消息协议)
@@ -16,10 +17,13 @@
 
 ## [数据结构](#目录)
 
-采用**结构体**的方式存取数据
+1. 采用**结构体**的方式对活动数据进行业务操作
 
-1. 对于玩家 数据存放在玩家数据的periods字段，以活动ID为键
-2. 对于服务器 数据可采用Repo和ETS共同存储 服务器重启时，从Repo取出放在ETS 每次调用时，从ETS读取数据 保存时，Repo和ETS都要进行保存
+2. 采用**map**的形式存放玩家数据和全服活动数据
+
+3. 对于玩家 数据存放在玩家数据的periods字段，以活动ID为键
+
+4. 对于服务器 数据可采用Repo和ETS共同存储 服务器重启时，从Repo取出放在ETS 每次调用时，从ETS读取数据 保存时，Repo和ETS都要进行保存
 
 以兑换活动为例
 
@@ -101,6 +105,38 @@ def on_begin(act_id, _act_data) do
 end
 ```
 
+## [活动中控](#目录)
+
+### [简介](#活动中控)
+
+<img src="res/TIM截图20191122153854.jpg" align="right">
+
+1. 活动中控功能也被 [腾讯游戏接入平台](https://tea.qq.com/)，称作IDIP功能。
+
+2. 此功能为游戏预留的后门功能，能在不影响整体游戏运行时，**强行关闭部分游戏功能**。
+
+3. 该功能可能用在游戏上线后突现漏洞、违反部分法规或者策划设计关闭部分游戏功能等。
+
+4. 要在服务器端实现该功能也很简单，只需要在进行相关活动操作时，判断IDIP状态有没有被关闭即可。
+
+5. 在配置表中，有一个**IDIP功能列表**，在**状态**那个属性里面，可配1, 2, 3这三个值，对于服务器端而言，只要状态值不为 1，都表示活动无法正常进行。
+
+### [服务器端代码](#活动中控)
+
+```elixir
+def function(act_id, other_parameter, {id, %{periods: periods} = data}) do
+  # 在 with 语句中，判断IDIP即可
+  with {true, _} <- Periods.opened_with_idip?(act_id, {id, data}) || :idip_closed,
+       some_judgement do
+    do_something
+    {:resolve, context, effect}
+
+  else
+    {:notify, events}
+  end
+end
+```
+
 ## [数据初始化](#目录)
 
 1. 可以采用封装库**PeriodsAPI.Behavior**中的*init_avatar_act_data/3*，进行数据的初始化，也可以自定义一个函数，在*on_begin*和*on_run*的时候调用。
@@ -109,14 +145,37 @@ end
 4. ETS需要进行初始化，初始化函数的调用可放在Main或Periods模块中。
 
 ```elixir
-defmodule Periods.Exchange.Ets do
-  @ets_name :exchange
+defmodule Periods.Some_periods.Ets do
+  @ets_name :some_periods
 
   def init_ets() do
     :ets.info(@ets_name) == :undefined && :ets.new(@ets_name, [:set, :public, :named_table])
     :ets.delete_all_objects(@ets_name)
   end
 end
+
+defmodule Periods.Some_periods do
+  # 数据初始化
+  def init_avatar_act_data(act_id, now_time) do
+    parameter =
+      do_something
+
+    %AvatarStruct{%AvatarStruct{} | parameter: parameter}
+  end
+
+  def avatar_act_data(act_id, periods) do
+    case periods |> Map.get(act_id) do
+      # init for nil
+      nil ->
+        init_avatar_act_data(act_id, Utils.timestamp())
+
+      # 业务操作，采用结构体
+      act_data ->
+        Map.merge(%AvatarStruct{}, act_data)
+    end
+  end
+end
+
 ```
 
 ## [数据重置](#目录)
@@ -221,7 +280,7 @@ end
 * PeriodsAPI (周期运营活动模块)
 * PeriodsAPI.Behavior (周期运营活动依赖模块)
 
-### DB.RepoAPI
+### [DB.RepoAPI](#依赖库)
 
 ```elixir
 use DB.RepoAPI, name: 数据表名, format: 存储的字段名, 默认为{:_id, :data}
@@ -272,7 +331,7 @@ transform(rec :: tuple) :: map
 transform(rec :: map) :: tuple
 ```
 
-### PeriodsAPI
+### [PeriodsAPI](#依赖库)
 
 ```elixir
 # 添加周期运营活动
@@ -342,7 +401,7 @@ periods()
 remove_local(id)
 ```
 
-### PeriodsAPI.Behavior
+### [PeriodsAPI.Behavior](#依赖库)
 
 ```elixir
 # 根据活动id获取玩家周期运营活动数据函数
