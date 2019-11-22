@@ -2,7 +2,7 @@
 
 ---
 
-<img src="res/fbmy.png" align="right" >
+<img src="res/fbmy.png" align="right">
 
 ## 目录
 
@@ -11,8 +11,8 @@
 * [活动状态](#活动状态)
 * [数据初始化](#数据初始化)
 * [数据重置](#数据重置)
+* [消息协议](#消息协议)
 * [依赖库](#依赖库)
-* [](#)
 
 ## [数据结构](#目录)
 
@@ -65,7 +65,7 @@ defmodule Periods.Exchange.Repo do
 end
 
 defp save(act_id, new_act_data) do
-  new_act_data = Map.from_struct(new_act_data) # convert struct to map when saving data
+  new_act_data = Map.from_struct(new_act_data) # convert struct to map
   Ets.save(act_id, new_act_data)
   Repo.save({act_id, new_act_data}) # 分别存储于内存和磁盘中
 end
@@ -76,27 +76,11 @@ end
 在封装库**PeriodsAPI.Behavior**(周期运营活动依赖模块)中，定义了几个周期运营活动关于状态的回调函数，详细内容可参考[依赖库](#依赖库)：
 
 ```elixir
-
-# 周期运营活动0点的回调函数
-on_am0_reset(id, now_time)
-
-# 0点重置玩家周期运营活动数据的回调函数
-on_avatar_am0_reset(id, now_time, {})
-
-# 重置在线玩家的周期运营活动数据的回调函数
-on_avatar_reset(id, {})
-
 # 周期运营活动开始的回调事件
 on_begin(id, data)
 
 # 周期运营活动停止的回调事件
 on_close(id, data)
-
-# 有单独进程的周期运营活动创建的回调事件
-on_create(id, data)
-
-# 功能解锁重置玩家周期运营活动数据的回调函数
-on_function_unlock(id, now_time, {})
 
 # 玩家登录时检查玩家周期运营活动数据的回调函数
 on_login_reset(id, now_time, {})
@@ -139,11 +123,95 @@ end
 
 数据重置主要分为三种，零点重置、登录重置、在线重置，他们都是活动状态里面的回调函数。
 
-1. 对于**零点重置**而言，目标可以是服务器端数据和玩家数据。
+1. 对于**整点重置**而言，目标可以是服务器端数据和玩家数据。
 2. 发起重置请求是在**Scheduler**模块中的*am0/0*中进行的，请求在**Avatar**模块中得到处理，并调用了封装库**PeriodsAPI**中的*do_avatar_am0_reset*回调函数。
 3. 对于**登录重置**而言，目标则一般针对于玩家数据。
 4. 对于**在线重置**而言，一般会配合**功能开启**的回调函数一起使用，目标为玩家数据。
 5. 重置时，可通过**Periods.opened?/2**判断活动有没有开启，如果活动已经关闭，则可以清除玩家的活动数据。
+
+```elixir
+  # 凌晨在线重置
+  def on_avatar_am0_reset(act_id, now_time, {id, %{periods: periods} = data}) do
+    case Periods.opened?(act_id, {id, data}) do
+      {true, _} ->
+        do_something
+
+      _ ->
+        {[], %{}}
+    end
+  end
+
+  # 对在线玩家重置活动数据
+  def on_avatar_reset(act_id, {id, %{periods: periods} = data}) do
+    {events, changed} =
+      case Periods.opened?(act_id, {id, data}) do
+        {false, _} ->
+          {[], %{}}
+
+        {true, _} ->
+          do_something
+          {events, changed}
+      end
+
+    {:notify, events, changed}
+  end
+
+  # 登陆重置
+  def on_login_reset(act_id, now_time, {id, %{periods: periods} = data}) do
+    case Periods.opened?(act_id, {id, data}) do
+      {false, _} ->
+        do_something
+
+      {true, _} ->
+        do_something
+    end
+  end
+
+  # 功能开启
+  def on_function_unlock(act_id, _now, state) do
+    {_, events, changed} = on_avatar_reset(act_id, state)
+    {events, changed}
+  end
+```
+
+## [消息协议](#目录)
+
+对于周期运营活动的socket协议，在**avatar**模块中，有对周期运营活动进行特殊处理。
+
+```elixir
+# 客户端请求: ["periods:函数名", act_id, 参数1, 参数2 ...]
+# act_id 必须放在参数的首位
+defmodule Avatar do
+  def handle_cast({{:periods, action}, [act_id | args]}, {id, _session, data} = state)
+      when action != :dispatch do
+    Periods.dispatch(act_id, action, args, {id, data}) |> handle_result(state)
+  end
+end
+
+# 在Periods模块中，会通过依赖库 PeriodsAPI 中dispatch函数，来调度到指定的函数进行业务操作
+defmodule Periods do
+  use PeriodsAPI
+
+  def dispatch(id, action, args \\ [], avatar_state)
+
+  def dispatch(id, action, args, {aid, data}) do
+    PeriodsAPI.dispatch(id, action, List.wrap(args) ++ [{aid, data}], :ok)
+  end
+
+  def dispatch(id, action, args, _) do
+    Logger.warn("unknown dispatch, id:#{id}, action: #{inspect(action)}, args:#{inspect(args)}")
+  end
+end
+
+# PeriodsAPI
+  dispatch(id, action, args, default \\ nil)
+  dispatch(
+    id :: integer(),
+    action :: atom() | String.t(),
+    args :: list(),
+    default :: nil | any()
+  ) :: any()
+```
 
 ## [依赖库](#目录)
 

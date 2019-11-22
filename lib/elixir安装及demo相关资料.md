@@ -1,15 +1,19 @@
 # elixir安装及demo相关资料
 
+---
+
+<img src="res/elixir-logo.png" align="right">
+
 ## 目录
 
-* [一_Elixir安装](#一_elixir安装)
-* [二_demo流程分析](#二_demo流程分析)
-  * [demo代码调试方法](#demo代码调试方法)
-* [三_Elixir的细节](#三_elixir的细节)
-* [四_Demo框架图](#四_demo框架图)
-* [五_消息序列图](#五_消息序列图)
+* [1. Elixir安装](#1Elixir安装)
+* [2. demo流程分析](#2demo流程分析)
+  * [2.1 demo代码调试方法](#21demo代码调试方法)
+* [3. Elixir的细节](#3Elixir的细节)
+* [4. Demo框架图](#4Demo框架图)
+* [5. 消息序列图](#5消息序列图)
 
-## 一_Elixir安装
+## [1.Elixir安装](#目录)
 
 ### 根据官网提供的Windows安装方法会有如下问题
 
@@ -40,13 +44,13 @@
 
 如果出现以上情况，请把erl的bin目录也添加到Path
 
-## 二_demo流程分析
+## [2.demo流程分析](#目录)
 
 ![avatar](/res/TIM截图20190822114849.jpg)
 
 demo代码中，每个客户端会通过socket连接到服务器的session，session会启动一个对应角色的avatar。客户端的各种操作通过socket给session发消息，session将消息转发给avatar，avatar分析操作类型，然后调用对应的模块完成相关信息的修改，avatar再将需要反馈的结果传给session，session再传给客户端。
 
-### demo代码调试方法
+### [2.1demo代码调试方法](#目录)
 
 1. 在demo根目录中打开cmd
 2. mix deps.get  #获取依赖
@@ -77,7 +81,7 @@ GenServer.cast(avatar_pid, {{:bag,:sell},[0,3]})
 如：Repo、Item等中的函数，可以直接通过 模块名.函数名(参数) 的方式进行调用
 若想清除角色和物品数据，可以删除项目根目录下的characters、items文件，重新运行iex -S mix即可
 
-## 三_Elixir的细节
+## [3.Elixir的细节](#目录)
 
 1. 使用mix deps.get 下载依赖时，可能会因为超时下载不成功，可根据提示配置两个环境变量，如下：
 HEX_HTTP_CONCURRENCY     值为1
@@ -95,7 +99,7 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 注意页面位置，尽量用1处点击复制url，在通过git clone 进行下载，不推荐通过2处直接下载
 
-## 四_Demo框架图
+## [4.Demo框架图](#目录)
 
 ![avatar](/res/demo框架-改.png)
 
@@ -127,7 +131,7 @@ git使用教程：<https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E
 
 `Effect.esolve({:gain, :item, item}, {id, _context, %{bag: bag}})` effect消息处理函数。更具effect为背包增加某样物品，返回event、changed消息。
 
-## 五_消息序列图
+## [5.消息序列图](#目录)
 
 ![avatar](/res/序列图.png)
 
