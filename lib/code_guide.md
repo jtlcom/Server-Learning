@@ -7,7 +7,7 @@
 * [JavaScript常用转表方法](#javascript常用转表方法)
 * [Elixir](#elixir)
 
-## JSON
+## [JSON](#目录)
 
 ```json
 //s世界等级.json
@@ -29,7 +29,7 @@
 ]   //mapping中的id会成为CouchDB中的key值，所以尽量选择csv中的索引(或者易于区分且唯一的值)作为JSON的id
 ```
 
-## JavaScript
+## [JavaScript](#目录)
 
 ### 写法一
 
@@ -96,7 +96,7 @@ function (doc) {
 * 第一种写法更直观的表现了转表的内容，且较为简单
 * 而第二种写法可以更简便的转表，并且兼容后面新增的其他字段
 
-### JavaScript常用转表方法
+### [JavaScript常用转表方法](#目录)
 
 ```javascript
 var { findPropertyGroup, parse2DArray } = require('views/lib/common')
@@ -143,7 +143,7 @@ if (timeProp) {
 
 ```
 
-## Elixir
+## [Elixir](#目录)
 
 ### 编码
 

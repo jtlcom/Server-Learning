@@ -1,6 +1,8 @@
 # 服务器资料
 
-<img src="res/zwwx-banner.png" align="right" >
+---
+
+<img src="res/zwwx-banner.png" align="right">
 
 ## 编码规范
 
@@ -28,7 +30,7 @@
 
 ## JavaScript,CouchDB
 
-* [从csv到CouchDB的过程](/lib/js.md)
+* [配置表转换为可读代码的流程](/lib/js.md)
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
 * [通过离散文本找到对应JS在CouchDB的位置](/lib/couch_find.md)
 
@@ -50,5 +52,7 @@
 * [属性及战斗力投放](/lib/属性及战斗力投放.md)
 * [场景和玩家之间的消息传递](/lib/场景和玩家之间的消息传递.md)
 * [资源找回](lib/资源找回.md)
+* [服务器端周期运营活动整体架构](/lib/periods.md)
+* [服务器端日常活动整体架构](/lib/activity.md)
 
 ---
