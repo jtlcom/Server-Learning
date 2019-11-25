@@ -11,10 +11,6 @@
 * [活动中控](#活动中控)
 * [数据初始化](#数据初始化)
 * [数据重置](#数据重置)
-* [消息协议](#消息协议)
-* [副本场景](#副本场景)
-* [副本次数](#副本次数)
-* [副本扫荡](#副本扫荡)
 
 ## [数据结构](#目录)
 
@@ -72,8 +68,6 @@ end
 
 ### [简介](#活动中控)
 
-<img src="res/TIM截图20191122153854.jpg" align="right">
-
 1. 和周期运营活动类似，日常活动也采用了IDIP功能控制。
 
 2. 活动中控功能也被 [腾讯游戏接入平台](https://tea.qq.com/) 称作IDIP功能。
@@ -86,6 +80,8 @@ end
 
 6. 在配置表中，有一个**IDIP功能列表**，在**状态**那个属性里面，可配1, 2, 3这三个值，对于服务器端而言，只要状态值不为 1，都表示活动无法正常进行。
 
+<img src="res/TIM截图20191122153854.jpg">
+
 ### [服务器端代码](#活动中控)
 
 ```elixir
@@ -97,6 +93,46 @@ def function(some_parameter, {id, %{activity_data: activity_data}}) do
     do_something
   else
     :ok
+  end
+end
+```
+
+## [数据初始化](#目录)
+
+1. 日常活动的游戏数据，最开始依然是在**repo**模块中声明的
+2. 在repo中声明时，是没有任何数据的，初始化数据是在**Activity.Role**模块的**init_acts**函数中
+
+```elixir
+defmodule Activity.Role do
+  # init activity_data
+  def init_acts(acts) do
+    Cfgs.get_all()
+    |> Map.keys()
+    |> Enum.reduce(acts, fn (act_id, acc) ->
+      if not Map.has_key?(acc, act_id) do
+        %{times: times} = Cfgs.get(act_id)
+        can_back = Cfgs.can_res_back?(act_id)
+        init = init_act(act_id, times, can_back)
+        Map.put(acc, act_id, init)
+      else
+        acc
+      end
+    end)
+  end
+end
+```
+
+## [数据重置](#目录)
+
+1. 日常活动的数据大部分会在每日零点进行重置，重置操作是在**Activity.Role**模块的**refresh_acts**函数中完成的
+2. 零点一般会重置当日的活动进入次数、购买次数以及资源找回次数
+
+```elixir
+defmodule Activity.Role do
+  def refresh_acts(data, _) do
+    # 零点重置
+    # 购买次数重置
+    # 资源找回重置
   end
 end
 ```
