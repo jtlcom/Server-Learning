@@ -63,15 +63,19 @@
 数据保存手段：
 
 ```elixir
-defmodule Periods.Exchange.Repo do
-  # 调用 DB.RepoAPI (DB泛型API模块)
-  use DB.RepoAPI, name: :periods_exchange
+defmodule Periods.Some_periods.Repo do
+  # 调用 DB.RepoAPI
+  use DB.RepoAPI, name: :periods_some_periods
 end
 
-defp save(act_id, new_act_data) do
-  new_act_data = Map.from_struct(new_act_data) # convert struct to map
-  Ets.save(act_id, new_act_data)
-  Repo.save({act_id, new_act_data}) # 分别存储于内存和磁盘中
+defmodule Periods.Some_periods do
+  alias Periods.Some_periods.{Repo, Ets}
+  
+  defp save(act_id, new_act_data) do
+    new_act_data = Map.from_struct(new_act_data) # convert struct to map
+    Ets.save(act_id, new_act_data)
+    Repo.save({act_id, new_act_data}) # 分别存储于内存和磁盘中
+  end
 end
 ```
 
@@ -109,8 +113,6 @@ end
 
 ### [简介](#活动中控)
 
-<img src="res/TIM截图20191122153854.jpg" align="right">
-
 1. 活动中控功能也被 [腾讯游戏接入平台](https://tea.qq.com/)，称作IDIP功能。
 
 2. 此功能为游戏预留的后门功能，能在不影响整体游戏运行时，**强行关闭部分游戏功能**。
@@ -120,6 +122,8 @@ end
 4. 要在服务器端实现该功能也很简单，只需要在进行相关活动操作时，判断IDIP状态有没有被关闭即可。
 
 5. 在配置表中，有一个**IDIP功能列表**，在**状态**那个属性里面，可配1, 2, 3这三个值，对于服务器端而言，只要状态值不为 1，都表示活动无法正常进行。
+
+<img src="res/TIM截图20191122153854.jpg">
 
 ### [服务器端代码](#活动中控)
 
