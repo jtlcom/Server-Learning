@@ -2,7 +2,7 @@
 
 ---
 
-<img src="res/fbmy.png" align="right">
+<img src="/res/fbmy.png" align="right">
 
 ## 目录
 
@@ -123,7 +123,7 @@ end
 
 5. 在配置表中，有一个**IDIP功能列表**，在**状态**那个属性里面，可配1, 2, 3这三个值，对于服务器端而言，只要状态值不为 1，都表示活动无法正常进行。
 
-<img src="res/TIM截图20191122153854.jpg">
+<img src="/res/TIM截图20191122153854.jpg">
 
 ### [服务器端代码](#活动中控)
 

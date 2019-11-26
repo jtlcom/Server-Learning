@@ -2,7 +2,7 @@
 
 ---
 
-<img src="res/elixir-logo.png" align="right">
+<img src="/res/elixir-logo.png" align="right">
 
 ## 目录
 
@@ -44,13 +44,13 @@
 
 如果出现以上情况，请把erl的bin目录也添加到Path
 
-## [2.demo流程分析](#目录)
+## [2.Demo流程分析](#目录)
 
 ![avatar](/res/TIM截图20190822114849.jpg)
 
 demo代码中，每个客户端会通过socket连接到服务器的session，session会启动一个对应角色的avatar。客户端的各种操作通过socket给session发消息，session将消息转发给avatar，avatar分析操作类型，然后调用对应的模块完成相关信息的修改，avatar再将需要反馈的结果传给session，session再传给客户端。
 
-### [2.1demo代码调试方法](#目录)
+### [2.1Demo代码调试方法](#目录)
 
 1. 在demo根目录中打开cmd
 2. mix deps.get  #获取依赖
