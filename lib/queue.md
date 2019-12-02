@@ -13,7 +13,7 @@
 
 ## [消息队列](#目录)
 
-<img src="/res/mq.jpg">
+<img src="/res/mq.jpg" align="right">
 
 * 在Erlang的虚拟机(BEAM)里，对进程内的消息处理机制是一种常见的**队列(queue)结构**，也就是**先进先出**，这也是大多数进程处理的模式。所以丢到工作队列的作业，会按照先后顺序进行执行。
 
@@ -35,7 +35,7 @@
 
 ## [多进程的调度模式](#目录)
 
-<img src="/res/mq-high.jpg">
+<img src="/res/mq-high.jpg" align="right">
 
 * 对于多进程的消息处理，BEAM采用了**优先级轮转调度(reduction-counting)**，即进程之间如果优先级相同，则是轮流执行的，并允许将一定量的进程进行优先处理(即获得更多的运算时间)。
 
