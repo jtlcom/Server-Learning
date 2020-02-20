@@ -58,11 +58,12 @@
 * [携带玩家数据进入副本](/lib/携带玩家数据到副本.md)
 * [Erlang虚拟机的消息队列机制](/lib/queue.md)
 * [禁止VirtualBox虚拟机同步系统时间](/lib/禁止virtualbox虚拟机同步系统时间.md)
-* [login接口介绍](/lib/login接口介绍.md)
 
 ## 部署、运维、对接
 
 * [环境搭建](/lib/环境搭建.md)
+* [部署说明](/lib/部署说明.md)
+* [login接口介绍](/lib/login接口介绍.md)
 * [对接期间修改相关总结](/lib/对接期间修改相关总结-longkui.md)
 
 ---
