@@ -4,13 +4,6 @@
 
 <img src="/res/zwwx-banner.png" align="right">
 
-## 编码规范
-
-* [JSON](/lib/code_guide.md#json)
-* [JavaScript](/lib/code_guide.md#javascript)
-* [JavaScript常用转表方法](/lib/code_guide.md#javascript常用转表方法)
-* [Elixir](/lib/code_guide.md#elixir)
-
 ## 实习资料
 
 * [实习资料简介](/lib/实习资料.md)
@@ -19,6 +12,13 @@
 * [实习考核期第二阶段内容](/lib/实习期第二阶段内容.md)
 * [实习考核期第三阶段内容](/lib/实习期第三阶段内容.md)
 * [项目开发流程--致新同学](/lib/项目开发流程.md)
+
+## 编码规范
+
+* [JSON](/lib/code_guide.md#json)
+* [JavaScript](/lib/code_guide.md#javascript)
+* [JavaScript常用转表方法](/lib/code_guide.md#javascript常用转表方法)
+* [Elixir](/lib/code_guide.md#elixir)
 
 ## git
 
@@ -33,7 +33,7 @@
 
 * [配置表转换为可读代码的流程](/lib/js.md)
 * [在CouchDB添加离散数据](/lib/discrete_data.md)
-* [通过离散文本找到对应JS在CouchDB的位置](/lib/couch_find.md)
+* [寻找某一字段在CouchDB的位置](/lib/couch_find.md)
 
 ## 问题汇总
 
