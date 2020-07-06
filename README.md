@@ -58,6 +58,7 @@
 * [Tlog整体架构](/lib/tlog.md)
 * [禁止VirtualBox虚拟机同步系统时间](/lib/禁止virtualbox虚拟机同步系统时间.md)
 * [分布式服务架构](/lib/分布式服务架构.md)
+* [mapping编码格式](lib/mapping编码格式.md)
 
 ## 部署、运维、对接
 
