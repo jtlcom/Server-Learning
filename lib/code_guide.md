@@ -188,6 +188,31 @@ def init_player_info() do
 end
 ```
 
+```elixir
+# 以后开发功能模块，模块最好按功能分开定义
+# 1是增加代码易读性，2是增加代码热更便利性
+
+defmodule X.Repo do
+# 存储模块
+end
+
+defmodule X.EtsRepo do
+# 存储模块
+end
+
+defmodule X.Cfg do
+# 配置模块
+end
+
+defmodule X.Server do
+# 独立进程模块
+end
+
+defmodule X do
+# 功能逻辑模块
+end
+```
+
 ---
 
 ### 代码自测
