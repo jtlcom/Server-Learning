@@ -15,10 +15,22 @@ remote_exec_cmd 25001 "/data/realm-KEY/tools/my3d_realm_ctrl.sh rpc 'Router.rout
 remote_exec_cmd global "/data/tools/my3d_global_ctrl.sh rpc 'Timex.local'"
 ```
 
+## 查询error
+
+```bash
+remote_exec_cmd 25001 "cat /data/realm-KEY/log/realm.log | grep -C 10 error | tail -n 500"
+```
+
 ## 查询TLOG数据
 
 ```bash
 remote_exec_cmd 25001 "cat /data/log/tlog/serverKEY/tlog_20210310*.log | grep id | grep MoneyFlow"
+```
+
+## 查看config文件
+
+```bash
+remote_exec_cmd 25001 "cat /data/realm-KEY/my3d/realm/releases/0.1.0/sys.config"
 ```
 
 ## 服务器热更代码、配置
@@ -50,6 +62,13 @@ remote_exec_cmd douyin "scp Elixir.Periods.WorldGroupBattle.beam"
 remote_exec_cmd 25001 "/data/realm-KEY/tools/update_mods_realm.sh EudemonSoul"
 remote_exec_cmd global "/data/tools/update_mods_global.sh Periods.WorldGroupBattle"
 remote_exec_cmd world "/data/tools/update_mods_world.sh Debug"
+```
+
+## 合服特殊处理
+
+```bash
+# 战神殿
+remote_exec_cmd 25001 "/data/realm-KEY/tools/my3d_realm_ctrl.sh rpc 'ZenTemple.merge_realm(25001, [25002, 25003])'"
 ```
 
 ---
