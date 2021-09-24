@@ -73,6 +73,9 @@ remote_exec_cmd world "/data/tools/update_mods_world.sh Debug"
 ```bash
 # 战神殿
 remote_exec_cmd 25001 "/data/realm-KEY/tools/my3d_realm_ctrl.sh rpc 'ZenTemple.merge_realm(25001, [25002, 25003])'"
+
+# 冲榜活动
+remote_exec_cmd 15001 "/data/realm-KEY/tools/my3d_realm_ctrl.sh rpc 'HitLadder.recovery_ladder(15002)'"
 ```
 
 ---
