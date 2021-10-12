@@ -68,6 +68,7 @@
 * [部署说明](/lib/部署说明.md)
 * [login接口介绍](/lib/login接口介绍.md)
 * [对接期间修改相关总结](/lib/对接期间修改相关总结-longkui.md)
+* [内网常用命令](/lib/command-lan.md)
 * [线上运维常用命令](/lib/command.md)
 
 ---
